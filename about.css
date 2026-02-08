@@ -96,6 +96,33 @@ h1 {
     margin-bottom: 5px; /* Spacing kam ki taaki subtitle upar aaye */
 }
 
+.about-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: left;
+    margin-bottom: 5px;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4e1ca 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(252, 191, 125, 0.3);
+    filter: drop-shadow(0 0 20px rgba(125, 211, 252, 0.4));
+    animation: glow-text 3s ease-in-out infinite;
+}
+
+@keyframes glow-text {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(252, 197, 125, 0.3);
+        filter: drop-shadow(0 0 15px rgba(252, 205, 125, 0.3));
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(252, 224, 125, 0.6);
+        filter: drop-shadow(0 0 30px rgba(125, 211, 252, 0.6));
+    }
+}
+
 .subtitle {
     font-size: 2.2rem; /* Size bada kar diya */
     color: rgb(234, 88, 12); /* Perfect Orange color */

@@ -190,7 +190,7 @@ body {
 }
 
 .nav-link {
-    color: #a1a1aa;
+    color: #b2b2be;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
     transition: color 0.2s;
@@ -827,7 +827,7 @@ body {
 
 .forecast-description {
     font-size: 0.875rem;
-    color: #c0c0d2;
+    color: #9595a1;
     line-height: 1.6;
     font-family: 'Inter', sans-serif;
 }
@@ -909,6 +909,45 @@ body {
     padding: 1.5rem;
     position: relative;
     overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+}
+
+.terminal-card:hover {
+    background: rgba(10, 11, 13, 0.9);
+    border-color: #f97316;
+    box-shadow: 
+        0 0 20px rgba(249, 115, 22, 0.5),
+        0 0 40px rgba(249, 115, 22, 0.3),
+        inset 0 0 20px rgba(249, 115, 22, 0.1);
+    transform: translateY(-5px);
+}
+
+.card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(249, 115, 22, 0.3), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.terminal-card:hover .card-glow {
+    opacity: 1;
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { 
+        box-shadow: 
+            0 0 30px rgba(249, 115, 22, 0.6),
+            0 0 60px rgba(249, 115, 22, 0.3);
+    }
+    50% { 
+        box-shadow: 
+            0 0 50px rgba(249, 115, 22, 0.8),
+            0 0 100px rgba(249, 115, 22, 0.5);
+    }
 }
 
 .card-header {

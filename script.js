@@ -131,6 +131,39 @@ function initializeCardHoverEffects() {
             }
         });
     });
+    
+    // Initialize impact card glow effects
+    initializeImpactCardGlow();
+}
+
+// Initialize glow effect for impact cards
+function initializeImpactCardGlow() {
+    const impactCards = document.querySelectorAll('.impact-card');
+    
+    impactCards.forEach(card => {
+        const glowElement = card.querySelector('.card-glow');
+        
+        card.addEventListener('mousemove', (e) => {
+            if (!glowElement) return;
+            
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Update CSS custom properties for gradient position
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+            
+            // Animate glow based on mouse position
+            glowElement.style.opacity = '1';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (glowElement) {
+                glowElement.style.opacity = '0';
+            }
+        });
+    });
 }
 
 // 4. TIMERS (Unchanged)
