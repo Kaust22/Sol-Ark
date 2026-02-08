@@ -40,7 +40,7 @@
 
             <!-- Status -->
             <div class="nav-status">
-                <button class="login-button">
+                <button class="login-button" onclick="openConsole()">
                     CONSOLE LOGIN
                 </button>
             </div>
@@ -408,5 +408,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <div id="console-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95); z-index: 10000; justify-content: center; align-items: center;">
+        
+        <div style="width: 80%; height: 85%; background: black; border: 1px solid #FF6B00; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);">
+            
+            <div style="padding: 10px 20px; border-bottom: 1px solid #FF6B00; display: flex; justify-content: space-between; align-items: center; color: #FF6B00; font-family: monospace;">
+                <span>>> SYSTEM_ACCESS: EMAIL_GATEWAY_V1</span>
+                <button onclick="closeConsole()" style="background: transparent; border: 1px solid #FF6B00; color: #FF6B00; cursor: pointer; padding: 5px 10px;">CLOSE [X]</button>
+            </div>
+            
+            <iframe src="http://localhost:3001" style="flex: 1; width: 100%; border: none;"></iframe>
+        </div>
+    </div>
 </body>
 </html>
