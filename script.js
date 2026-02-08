@@ -1,30 +1,30 @@
 // Initialize Lucide Icons & Effects
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    
+
     generateStars();
     initializeCardHoverEffects();
     updateTimers();
     initializeSmoothScrolling();
-    
+
     // UPDATED: Now calls the Typewriter effect
     initTypewriterEffect();
 });
 
 // --- TYPEWRITER EFFECT (Replaces Hacker Effect) ---
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    
+
     generateStars();
     initializeCardHoverEffects();
     updateTimers();
     initializeSmoothScrolling();
-    
+
     // START THE AUTO LOOP
     initAutoTypewriterLoop();
 });
@@ -54,7 +54,7 @@ function initAutoTypewriterLoop() {
             target.classList.add('typing-cursor'); // Add blinking cursor style
 
             let charIndex = 0;
-            
+
             // B. Type Character by Character
             const typeInterval = setInterval(() => {
                 target.textContent += originalText.charAt(charIndex);
@@ -67,7 +67,7 @@ function initAutoTypewriterLoop() {
 
                     // C. Wait, then Restart
                     // Wait 5 to 8 seconds before clearing and typing again
-                    const pauseDuration = Math.random() * 3000 + 5000; 
+                    const pauseDuration = Math.random() * 3000 + 5000;
                     setTimeout(runTypingCycle, pauseDuration);
                 }
             }, 50 + (Math.random() * 30)); // Randomize typing speed slightly for realism
@@ -76,7 +76,7 @@ function initAutoTypewriterLoop() {
         // 3. INITIAL START DELAY
         // Stagger the start times so they don't all vanish at once.
         // First run happens between 1s and 4s after load.
-        const startDelay = index * 800 + 1000; 
+        const startDelay = index * 800 + 1000;
         setTimeout(runTypingCycle, startDelay);
     });
 }
@@ -85,9 +85,9 @@ function initAutoTypewriterLoop() {
 function generateStars() {
     const starContainer = document.getElementById('starfield');
     if (!starContainer) return;
-    
+
     const starCount = 200;
-    
+
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
@@ -96,14 +96,14 @@ function generateStars() {
         const size = Math.random() * 2 + 1;
         const duration = Math.random() * 3 + 2 + 's';
         const opacity = Math.random() * 0.7 + 0.3;
-        
+
         star.style.left = x + '%';
         star.style.top = y + '%';
         star.style.width = size + 'px';
         star.style.height = size + 'px';
         star.style.setProperty('--duration', duration);
         star.style.setProperty('--opacity', opacity);
-        
+
         starContainer.appendChild(star);
     }
 }
@@ -111,9 +111,9 @@ function generateStars() {
 // 3. CARD HOVER (Visual Icon Spin only)
 function initializeCardHoverEffects() {
     const cards = document.querySelectorAll('.feature-card');
-    
+
     cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             const icon = this.querySelector('.card-icon');
             if (icon) {
                 // Simple CSS rotation without changing layout flow
@@ -122,8 +122,8 @@ function initializeCardHoverEffects() {
                 icon.style.borderColor = "#f97316";
             }
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             const icon = this.querySelector('.card-icon');
             if (icon) {
                 icon.style.transform = "rotate(0deg) scale(1)";
@@ -170,13 +170,13 @@ function initializeImpactCardGlow() {
 function updateTimers() {
     const timerElements = document.querySelectorAll('.timer');
     if (!timerElements.length) return;
-    
+
     function updateTime() {
         const now = new Date();
         const utcHours = now.getUTCHours().toString().padStart(2, '0');
         const utcMinutes = now.getUTCMinutes().toString().padStart(2, '0');
         const utcSeconds = now.getUTCSeconds().toString().padStart(2, '0');
-        
+
         timerElements.forEach(timer => {
             if (timer.textContent.includes('UTC')) {
                 timer.textContent = `UTC ${utcHours}:${utcMinutes}:${utcSeconds}`;
@@ -190,7 +190,7 @@ function updateTimers() {
 // 5. SMOOTH SCROLL (Unchanged)
 function initializeSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -379,7 +379,7 @@ async function updateDashboardMetrics() {
 
         // 2. Scintillation (Based on Kp and Bz)
         let scinPct = (kp / 9) * 100;
-        if (bz < 0) scinPct += (Math.abs(bz) / 20) * 50; 
+        if (bz < 0) scinPct += (Math.abs(bz) / 20) * 50;
         updateImpactModule('scin-bar', 'scin-status', Math.min(scinPct, 100), "Signal Jitter: GNSS lock weak.");
 
         // 3. Power Grid (Based on Kp)
@@ -496,7 +496,7 @@ const stormLevelData = {
 };
 
 // Interaction Logic for dashboard metrics
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const defaultView = document.getElementById('visualizer-default-view');
     const detailsView = document.getElementById('visualizer-details-view');
     const detailsTitle = document.getElementById('details-title');
@@ -504,9 +504,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle Metric Card Clicks
     document.querySelectorAll('.metric-card').forEach(card => {
-        card.addEventListener('click', function(e) {
+        card.addEventListener('click', function (e) {
             e.stopPropagation(); // Stop click from immediately closing the view
-            
+
             const cardTitle = this.querySelector('.metric-title').textContent.trim();
             const details = observatoryDetails[cardTitle];
 
@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle "Click Outside" to Close
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         // If the click is NOT inside a metric card, return to default view
         if (!e.target.closest('.metric-card')) {
             detailsView.classList.add('hidden');
@@ -537,7 +537,7 @@ let kpChart = null; // Store chart instance to destroy/recreate on click
 
 function renderKpChart(hourlyData, avgValue) {
     const ctx = document.getElementById('kpForecastChart').getContext('2d');
-    
+
     // Labels for T to T+6 hours
     const labels = ['Live', 'T+1h', 'T+2h', 'T+3h', 'T+4h', 'T+5h', 'T+6h'];
 
@@ -573,7 +573,7 @@ function updateImpactModule(barId, statusId, value, warningText) {
     const status = document.getElementById(statusId);
     // const value = 41; // For testing purposes
     bar.style.width = `${value}%`;
-    
+
     // Set colors and text based on severity
     if (value > 70) {
         bar.className = 'meter-fill red';
@@ -602,3 +602,11 @@ function getStormLevel(kp) {
 
 // Call it once when the page loads
 document.addEventListener('DOMContentLoaded', updateDashboardMetrics);
+
+function openConsole() {
+    document.getElementById('console-overlay').style.display = 'flex';
+}
+
+function closeConsole() {
+    document.getElementById('console-overlay').style.display = 'none';
+}
